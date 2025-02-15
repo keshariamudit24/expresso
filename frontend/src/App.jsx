@@ -24,7 +24,7 @@ const Navigation = () => {
       <Link to="/">E<span className='text-orange-500'>x</span>pre<span className='text-blue-600'>ss</span>o</Link>
       <SignedIn>
         {!hideLogoutButton && (
-          <button className='text-red-500 border-2 border-red rounded text-xl hover:bg-red-500 hover:text-white p-1 cursor-pointer absolute top-0 right-0 mt-2 mr-2 hover:border-black' onClick={handleLogout}>Logout</button>
+          <button className='text-red-500 border-2 border-red text-xl hover:bg-red-500 hover:text-white p-2 cursor-pointer absolute top-0 right-0 mt-4 mr-4 hover:border-black rounded-2xl' onClick={handleLogout}>Logout</button>
         )}
       </SignedIn>
     </nav>

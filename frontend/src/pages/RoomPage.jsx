@@ -159,8 +159,8 @@ const RoomPage = ({ role }) => {
   });
 
   return (
-    <div className='flex flex-col items-center mt-40'>
-      <h1 className='text-5xl'>Room ID: {roomId}<FaCopy onClick={handleCopyRoomId} className='cursor-pointer inline-block ml-2 text-3xl' /></h1>
+    <div className='flex flex-col items-center mt-20'>
+      <h1 className='text-3xl'>Room ID: {roomId}<FaCopy onClick={handleCopyRoomId} className='cursor-pointer inline-block ml-2 text-3xl' /></h1>
       {roomClosureMessage && <p className='text-xl text-red-600'>{roomClosureMessage}</p>}
       {role !== 'participant' && (
         <div className='flex flex-col items-center justify-center mt-10'>
