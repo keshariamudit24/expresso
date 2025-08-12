@@ -1,7 +1,7 @@
 import { io } from 'socket.io-client';
+require('dotenv').config();
 
-// http://localhost:3000
-const socket = io('http://localhost:3000', {
+const socket = io(process.env.VITE_SOCKET_SERVER_URL, {
   withCredentials: true,
 });
 

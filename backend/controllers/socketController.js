@@ -39,6 +39,29 @@ const handleSocketConnection = (io, socket) => {
     }
   });
 
+  socket.on('markAsAnswered', async (roomId, doubtId) => {
+    console.log('markAsAnswered socket event received:', { roomId, doubtId });
+
+    const doubt = await Doubt.findOne({ roomId, id: doubtId });
+    console.log('Found doubt in database:', doubt);
+
+    if (doubt) {
+      doubt.answered = !doubt.answered;
+      if (doubt.answered) {
+        doubt.answeredAt = new Date();
+      } else {
+        doubt.answeredAt = null;
+      }
+      await doubt.save();
+      console.log('Doubt updated and saved:', { doubtId, answered: doubt.answered });
+
+      io.to(roomId).emit('markAsAnswered', doubtId, doubt.answered); // Broadcast to all clients in the room
+      console.log('markAsAnswered event emitted to room:', roomId);
+    } else {
+      console.log('Doubt not found in database');
+    }
+  });
+
   socket.on('closeRoom', async (roomId) => {
     await Doubt.deleteMany({ roomId });
     io.to(roomId).emit('roomClosed'); // Broadcast to all clients in the room
